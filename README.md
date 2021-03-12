@@ -8,7 +8,7 @@ You can use this commands:
 - /example - quickstart example
 - /id - return your **user_id**
 - /file - file logging example
-- /help - shows this message\n
+- /help - shows this message
 
 For support message me [@chernykh_vladimir](http://t.me/chernykh_vladimir)
 
