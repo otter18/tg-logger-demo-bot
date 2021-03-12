@@ -11,4 +11,4 @@ You can use this commands:
 
 For support message me [@chernykh_vladimir](http://t.me/chernykh_vladimir)
 
-![logo](https://raw.githubusercontent.com/otter18/tg-logger-demo-bot/main/img/logo.jpg)
+![logo](https://raw.githubusercontent.com/otter18/tg-logger-demo-bot/main/img/logo1.jpeg)
