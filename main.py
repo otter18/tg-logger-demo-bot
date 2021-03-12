@@ -28,7 +28,7 @@ logger = logging.getLogger("alpha")
 logger.setLevel(logging.INFO)
 logging.basicConfig(level=logging.INFO)
 
-tg_logger.setup(logger, token=BOT_TOKEN, users=users)
+tg_logger.setup(logger, token=os.environ.get("LOG_BOT_TOKEN"), users=users)
 
 
 # -------------- status webpage --------------
