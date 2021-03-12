@@ -44,9 +44,9 @@ def status():
 # ------------- webhook ----------------
 @app.route('/' + WEBHOOK_TOKEN, methods=['POST'])
 def getMessage():
-    logger.info('New message received')
     temp = request.stream.read().decode("utf-8")
     temp = telebot.types.Update.de_json(temp)
+    logger.debug('New message received. raw: %s', temp)
     bot.process_new_updates([temp])
     return "!", 200
 
@@ -80,7 +80,7 @@ def get_logger(name, user_id):
 # --------------- bot -------------------
 @bot.message_handler(commands=["example"])
 def new_queue(message, from_user=True):
-    logger.info(f'{message.from_user.username} want example')
+    logger.info(f'{message.from_user.username} wants example')
 
     user_logger = get_logger(message.from_user.username, message.chat.id)
     logger.debug("User logger obj: %s\nUser logger handlers: %s", user_logger, user_logger.handlers)
@@ -108,7 +108,27 @@ def new_queue(message, from_user=True):
 def get_id(message):
     logger.info(f'{message.from_user.username} used /id')
     bot.send_message(message.chat.id, f"<code>user_id = [{message.chat.id}]</code>", parse_mode='html')
-    
+
+
+@bot.message_handler(commands=["file"])
+def get_file(message):
+    logger.info(f'{message.from_user.username} used /file')
+    user_logger = get_logger(message.from_user.username, message.chat.id)
+    logger.debug("User logger obj: %s\nUser logger handlers: %s", user_logger, user_logger.handlers)
+
+    # TgFileLogger example
+    tg_files_logger = tg_logger.TgFileLogger(
+        token=BOT_TOKEN,  # tg bot token
+        users=[message.chat.id],  # list of user_id
+        timeout=10  # default is 10 seconds
+    )
+
+    file_name = "test.txt"
+    with open(file_name, 'w') as example_file:
+        example_file.write("Hello from tg_logger by otter18")
+
+    tg_files_logger.send(file_name, "Test file")
+
 
 @bot.message_handler(commands=["start", "help"])
 def start(message):
