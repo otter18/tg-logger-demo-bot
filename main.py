@@ -15,6 +15,7 @@ boot_date = datetime.datetime.now(tz=pytz.timezone("Europe/Moscow"))
 
 # ------------- flask config -------------
 app = Flask(__name__)
+app.config["SERVER_NAME"] = os.environ.get('HOST') + ":80"
 
 # ------------- bot config -------------
 WEBHOOK_TOKEN = os.environ.get('WEBHOOK_TOKEN')
