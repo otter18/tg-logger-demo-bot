@@ -34,7 +34,7 @@ tg_logger.setup(logger, token=BOT_TOKEN, users=users)
 # -------------- status webpage --------------
 @app.route('/')
 def status():
-    logging.info('Status page loaded')
+    logger.info('Status page loaded')
 
     return f"<h1>This is tg_logger demo bot server</h1>" \
            f"<p>Server uptime: {datetime.timedelta(seconds=time.time() - boot_time)}</p>" \
@@ -44,7 +44,7 @@ def status():
 # ------------- webhook ----------------
 @app.route('/' + WEBHOOK_TOKEN, methods=['POST'])
 def getMessage():
-    logging.info('New message received')
+    logger.info('New message received')
     temp = request.stream.read().decode("utf-8")
     temp = telebot.types.Update.de_json(temp)
     bot.process_new_updates([temp])
@@ -56,14 +56,14 @@ def webhook_on():
     bot.remove_webhook()
     url = 'https://' + os.environ.get('HOST') + '/' + WEBHOOK_TOKEN
     bot.set_webhook(url=url)
-    logging.info(f'Webhook is ON!')
+    logger.info(f'Webhook is ON! Url: %s', url)
     return "<h1>WebHook is ON!</h1>", 200
 
 
 @app.route("/remove_webhook/" + WEBHOOK_TOKEN)
 def webhook_off():
     bot.remove_webhook()
-    logging.info('WebHook is OFF!')
+    logger.info('WebHook is OFF!')
     return "<h1>WebHook is OFF!</h1>", 200
 
 
@@ -80,7 +80,7 @@ def get_logger(name, user_id):
 # --------------- bot -------------------
 @bot.message_handler(commands=["example"])
 def new_queue(message, from_user=True):
-    logging.info(f'{message.from_user.username} want example')
+    logger.info(f'{message.from_user.username} want example')
 
     user_logger = get_logger(message.from_user.username, message.chat.id)
     logger.debug("User logger obj: %s\nUser logger handlers: %s", user_logger, user_logger.handlers)
@@ -104,10 +104,15 @@ def new_queue(message, from_user=True):
     # And one more time...
     user_logger.info("Finishing tg_logger demo")
 
+@bot.message_handler(commands=["id"])
+def get_id(message):
+    logger.info(f'{message.from_user.username} used /id')
+    bot.send_message(message.chat.id, f"<code>user_id = [{message.chat.id}]</code>", parse_mode='html')
+    
 
-@bot.message_handler(commands=["start"])
+@bot.message_handler(commands=["start", "help"])
 def start(message):
-    logging.info(f'{message.from_user.username} used /start')
+    logger.info(f'{message.from_user.username} used /start')
     bot.send_message(message.chat.id, "Hello! Use command to see examples", parse_mode='html')
 
 
