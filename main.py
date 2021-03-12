@@ -69,7 +69,6 @@ def webhook_off():
 
 def get_logger(name, user_id):
     temp_logger = logging.getLogger(name)
-    print(temp_logger.handlers)
     while temp_logger.handlers:
         temp_logger.removeHandler(temp_logger.handlers[0])
     temp_logger.setLevel(logging.INFO)
@@ -84,7 +83,8 @@ def new_queue(message, from_user=True):
     logging.info(f'{message.from_user.username} want example')
 
     user_logger = get_logger(message.from_user.username, message.chat.id)
-    print(user_logger)
+    logger.debug("User logger obj: %s\nUser logger handlers: %s", user_logger, user_logger.handlers)
+    
     # Test
     user_logger.info("Hello from tg_logger by otter18")
 
