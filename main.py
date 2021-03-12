@@ -15,7 +15,6 @@ boot_date = datetime.datetime.now(tz=pytz.timezone("Europe/Moscow"))
 
 # ------------- flask config -------------
 app = Flask(__name__)
-app.config["SERVER_NAME"] = os.environ.get('HOST') + ":80"
 
 # ------------- bot config -------------
 WEBHOOK_TOKEN = os.environ.get('WEBHOOK_TOKEN')
@@ -55,7 +54,7 @@ def getMessage():
 @app.route("/set_webhook")
 def webhook_on():
     bot.remove_webhook()
-    url = 'https://' + app.config["SERVER_NAME"].split(':')[0] + '/' + WEBHOOK_TOKEN
+    url = 'https://' + os.environ.get('HOST') + '/' + WEBHOOK_TOKEN
     bot.set_webhook(url=url)
     logging.info(f'Webhook is ON!')
     return "<h1>WebHook is ON!</h1>", 200
