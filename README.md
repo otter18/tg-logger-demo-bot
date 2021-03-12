@@ -1,4 +1,4 @@
-# Tg-logger demo bot
+#  Tg-logger demo bot
 
 ## Bot is available [@tg_logger_demo_bot](https://t.me/tg_logger_demo_bot)
 
@@ -11,3 +11,6 @@ You can use this commands:
 - /help - shows this message\n\n'
 
 For support message me [@chernykh_vladimir](http://t.me/chernykh_vladimir)
+
+![logo](https://raw.githubusercontent.com/otter18/tg-logger-demo-bot/main/img/logo.jpg)
+
