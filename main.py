@@ -69,6 +69,8 @@ def webhook_off():
 
 def get_logger(name, user_id):
     temp_logger = logging.getLogger(name)
+    while temp_logger.hasHandlers():
+        temp_logger.removeHandler(temp_logger.handlers[0])
     temp_logger.setLevel(logging.INFO)
     tg_logger.setup(temp_logger, token=BOT_TOKEN, users=[user_id])
 
