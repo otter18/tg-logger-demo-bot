@@ -96,7 +96,7 @@ def get_logger(name, user_id):
 # --------------- bot -------------------
 @bot.message_handler(commands=["example"])
 def get_example(message):
-    logger.info(f'</code>@{message.from_user.username} ({message.chat.id})<code> wants an example')
+    logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) wants an example')
 
     bot.send_message(message.chat.id,
                      f'<b>This code will run and result will be shown below</b>\n\n'
@@ -120,7 +120,7 @@ def get_example(message):
 
 @bot.message_handler(commands=["file"])
 def get_file(message):
-    logger.info(f'</code>@{message.from_user.username} ({message.chat.id})<code> used /file')
+    logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /file')
 
     bot.send_message(message.chat.id,
                      f'<b>This code will run and result will be shown below</b>\n\n'
@@ -151,13 +151,13 @@ def get_file(message):
 
 @bot.message_handler(commands=["id"])
 def get_id(message):
-    logger.info(f'</code>@{message.from_user.username} ({message.chat.id})<code> used /id')
+    logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /id')
     bot.send_message(message.chat.id, f"<code>user_id = [{message.chat.id}]</code>", parse_mode='html')
 
 
 @bot.message_handler(commands=["start", "help"])
 def start(message):
-    logger.info(f'</code>@{message.from_user.username} ({message.chat.id})<code> used /start or /help')
+    logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /start or /help')
     bot.send_message(message.chat.id,
                      '<b>Hello! This bot shows how <a href="https://github.com/otter18/tg_logger">tg-logger library</a>'
                      ' works and helps to set it up.</b>\n\n'
