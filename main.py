@@ -166,7 +166,7 @@ def start(message):
                      '• /id - return your <b>user_id</b>\n'
                      '• /file - file logging example\n'
                      '• /help - shows this message\n\n'
-                     'For support message me @chernykh_vladimir',
+                     'For support message me @otter_18',
                      parse_mode='html')
 
 
