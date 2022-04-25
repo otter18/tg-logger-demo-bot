@@ -11,6 +11,6 @@ You can use this commands:
 - [/file](tg://msg?text=%2Ffile&to=tg_logger_demo_bot) - file logging example
 - [/help](tg://msg?text=%2Fhelp&to=tg_logger_demo_bot) - shows this message
 
-For support message me [@otter_18](http://t.me/otter_18)
+For support message me [@otter18](http://t.me/otter18)
 
 ![logo](https://raw.githubusercontent.com/otter18/tg-logger-demo-bot/main/img/logo1.jpeg)
